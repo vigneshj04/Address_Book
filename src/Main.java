@@ -8,6 +8,7 @@ public class Main {
         AddressBook ab = new AddressBook();
         ab.addNewAddressBook();
         ab.addContacts();
+        ab.searchByOptions();
 
         int choice;
         do {
