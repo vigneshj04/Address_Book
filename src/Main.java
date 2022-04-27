@@ -1,48 +1,32 @@
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
-    static HashMap<String, AddressBook> addressBookMap = new HashMap<>();
 
-    public static void addNewAddressBook() {
-         Scanner sc = new Scanner(System.in);
-
-        System.out.println("Enter the Address Book Name :");
-        String addressBookName = sc.next();
-        if (addressBookMap.containsKey(addressBookName)) {
-            System.out.println("Entered AddressBook is Already Available");
-        } else {
-            AddressBook addressBook = new AddressBook();
-            addressBookMap.put(addressBookName, addressBook);
-        }
-    }
-
+    static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+        AddressBook ab = new AddressBook();
+        ab.addNewAddressBook();
+        ab.addContacts();
 
         int choice;
-        AddressBook addressBook = new AddressBook();
         do {
             Scanner scan = new Scanner(System.in);
-
             System.out.println("Welcome to Address Book Program");
             System.out.println("Kindly Enter choice \n 1. Add new Contact \n 2. Edit Contact details \n 3. Show Contact details \n 4. Delete Contact");
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
-                    addressBook.addContacts();
+                    ab.addContacts();
                     break;
-
                 case 2:
-                    addressBook.editContacts();
+                    ab.editContacts();
                     break;
-
                 case 3:
-                    addressBook.showContacts();
+                    ab.showContacts();
                     break;
-
                 case 4:
-                    addressBook.deleteContact();
+                    ab.deleteContact();
                     break;
             }
         } while (choice != 3);
