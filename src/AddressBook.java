@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -27,12 +26,12 @@ public class AddressBook {
 
     public static void addNewAddressBook() {
         System.out.println("Enter the Address Book Name :");
-        String addressbookName = sc.next();
-        if (addressBookMap.containsKey(addressbookName)) {
+        String addressBookName = sc.next();
+        if (addressBookMap.containsKey(addressBookName)) {
             System.out.println("Entered AddressBook is Already Available");
         } else {
             AddressBook addressBook = new AddressBook();
-            addressBookMap.put(addressbookName, addressBook);
+            addressBookMap.put(addressBookName, addressBook);
         }
 
     }
@@ -325,6 +324,7 @@ public class AddressBook {
             }
         } while (choice != 5);
     }
+
 
     public static void sortByOption() {
         System.out.println("Choose how you want to sort 1. first name 2. last name 3.city 4.state 5.zip");
