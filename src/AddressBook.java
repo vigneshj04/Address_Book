@@ -6,9 +6,14 @@ public class AddressBook {
 
     static Scanner sc = new Scanner(System.in);
     static Map<String, AddressBook> addressBookMap = new HashMap<>();
-    ArrayList<Contacts> list = new ArrayList<Contacts>();
+    public static Map<String, Contacts> cityHashMap = new HashMap<String, Contacts>();
+    public static Map<String, Contacts> stateHashMap = new HashMap<String, Contacts>();
 
-    public boolean equalsFirstName(Contacts compareContacts) {
+
+    //ArrayList created for storing contacts.
+    static ArrayList<Contacts> list = new ArrayList<Contacts>();
+
+    public static boolean equalsFirstName(Contacts compareContacts) {
         for (Contacts contacts : list) {
             if (compareContacts.equals(contacts)) {
                 return true;
@@ -31,25 +36,25 @@ public class AddressBook {
     }
 
     // method to search contact by name
-    public List<Contacts> searchByName(String name) {
+    public static List<Contacts> searchByName(String name) {
         return list.stream().filter(person -> person.getFirstName().equalsIgnoreCase(name))
                 .collect(Collectors.toList());
     }
 
     // by city
-    public List<Contacts> searchByCity(String city) {
+    public static List<Contacts> searchByCity(String city) {
         return list.stream().filter(person -> person.getCity().equalsIgnoreCase(city))
                 .collect(Collectors.toList());
     }
 
     // by state
-    public List<Contacts> searchByState(String state) {
+    public static List<Contacts> searchByState(String state) {
         return list.stream().filter(person -> person.getState().equalsIgnoreCase(state))
                 .collect(Collectors.toList());
     }
 
 
-    public void searchByOptions() {
+    public static void searchByOptions() {
         Main addressBook = new Main();
         Scanner sc = new Scanner(System.in);
         System.out.println("1. By name");
@@ -80,6 +85,36 @@ public class AddressBook {
     }
 
 
+    public void viewByCity(Map<String, Contacts> cityHashMap) {
+        cityHashMap.entrySet().stream().forEach(e -> System.out.println(e.getKey() + "=" + e.getValue().toString()));
+    }
+
+    public static void viewByState(Map<String, Contacts> stateHashMap) {
+        stateHashMap.entrySet().stream().forEach(e -> System.out.println(e.getKey() + "=" + e.getValue().toString()));
+    }
+
+
+    // method for view element by option
+    public void viewByOption(Map<String, AddressBook> addressBookMap) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("1. View By city");
+        System.out.println("2. View By state");
+        System.out.print("Enter Your choice: ");
+        int choice = sc.nextInt();
+        sc.nextLine();
+        switch (choice) {
+            case 1:
+                viewByCity(cityHashMap);
+                break;
+            case 2:
+                viewByState(stateHashMap);
+                break;
+            default:
+                System.out.println("INVALID CHOICE!");
+        }
+    }
+
+
     public static void displayAddressBooks() {
         for (Map.Entry<String, AddressBook> entry : addressBookMap.entrySet()) {
             System.out.println(entry.getKey());
@@ -88,7 +123,32 @@ public class AddressBook {
         }
     }
 
-    public void addContacts() {
+    public static void editAddressBook() {
+        displayAddressBooks();
+        System.out.println("Enter the Address Book Name :");
+        String addressbookName = sc.next();
+        if (addressBookMap.containsKey(addressbookName)) {
+            addressBookMap.get(addressbookName).chooseoptionforcontact();
+        } else {
+            System.out.println("Entered Address Book Name is Not Present ");
+        }
+    }
+
+
+    public static void deleteAddressBook() {
+        displayAddressBooks();
+        System.out.println("Enter the Address Book Name :");
+        String addressBookName = sc.next();
+        if (addressBookMap.containsKey(addressBookName)) {
+            addressBookMap.remove(addressBookName);
+            System.out.println("Address Book is Deleted");
+        } else {
+            System.out.println("Entered Address Book Name is Not Present");
+        }
+    }
+
+
+    public static void addContacts() {
 
         Contacts contacts = new Contacts();
 
@@ -125,7 +185,9 @@ public class AddressBook {
             System.out.println("Contact already exists");
     }
 
-    public void showContacts() {
+
+    //Method to Show the Contact Details
+    public static void showContacts() {
         for (Contacts contacts : list) {
             System.out.println("Contact Details -");
             System.out.println("First Name : " + contacts.getFirstName());
@@ -139,7 +201,8 @@ public class AddressBook {
         }
     }
 
-    public void editContacts() {
+    public static void editContacts() {
+        // Editing contact detail by using first name.
 
         System.out.println("Enter the first name");
         String firstName = sc.next();
@@ -170,7 +233,7 @@ public class AddressBook {
         }
     }
 
-    public void deleteContact() {
+    public static void deleteContact() {
 
         System.out.println("Enter the first name");
         String firstName = sc.next();
@@ -190,9 +253,7 @@ public class AddressBook {
     }
 
 
-
-
-    public void chooseoptionforcontact() {
+    public static void chooseoptionforcontact() {
         int choice;
         do {
             Scanner scan = new Scanner(System.in);
@@ -217,5 +278,5 @@ public class AddressBook {
             }
         } while (choice != 5);
     }
-}
 
+}
