@@ -9,7 +9,7 @@ public class Contacts {
     String phone_number;
     String email;
 
-    public String getFirstname() {
+    public String getFirstName() {
         return firstname;
     }
 
@@ -17,11 +17,11 @@ public class Contacts {
         this.firstname = firstname;
     }
 
-    public String getLastname() {
+    public String getLastName() {
         return lastname;
     }
 
-    public void setLastname(String lastname) {
+    public void setLastName(String lastname) {
         this.lastname = lastname;
     }
 
@@ -57,7 +57,7 @@ public class Contacts {
         this.state = state;
     }
 
-    public String getPhone_number() {
+    public String getPhone_Number() {
         return phone_number;
     }
 
