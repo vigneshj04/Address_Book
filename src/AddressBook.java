@@ -1,3 +1,4 @@
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -6,8 +7,8 @@ public class AddressBook {
 
     static Scanner sc = new Scanner(System.in);
     static Map<String, AddressBook> addressBookMap = new HashMap<>();
-    public static Map<String, Contacts> cityHashMap = new HashMap<String, Contacts>();
-    public static Map<String, Contacts> stateHashMap = new HashMap<String, Contacts>();
+    public static Map<String, Contacts> cityHashMap = new HashMap<>();
+    public static Map<String, Contacts> stateHashMap = new HashMap<>();
 
 
     //ArrayList created for storing contacts.
@@ -62,7 +63,6 @@ public class AddressBook {
         System.out.println("3. By state");
         System.out.println("Your choice: ");
         int choice = sc.nextInt();
-        sc.nextLine();
         switch (choice) {
             case 1:
                 System.out.println("Enter name: ");
@@ -115,6 +115,33 @@ public class AddressBook {
     }
 
 
+    //method to count element by option
+    public static void countByOption() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("1. Count City ");
+        System.out.println("2. Count State");
+        System.out.println("3. Back ");
+        System.out.println("Enter Your Choice : ");
+        int choice = sc.nextInt();
+        sc.nextLine();
+        switch (choice) {
+            case 1:
+                Map<String, Long> countCity = list.stream()
+                        .collect(Collectors.groupingBy(e -> e.getCity(), Collectors.counting()));
+                System.out.println(countCity + "\n");
+                break;
+            case 2:
+                Map<String, Long> countState = list.stream()
+                        .collect(Collectors.groupingBy(e -> e.getState(), Collectors.counting()));
+                System.out.println(countState + "\n");
+                break;
+            case 3:
+                return;
+            default:
+                System.out.println("Invalid Option");
+        }
+    }
+
     public static void displayAddressBooks() {
         for (Map.Entry<String, AddressBook> entry : addressBookMap.entrySet()) {
             System.out.println(entry.getKey());
@@ -128,7 +155,7 @@ public class AddressBook {
         System.out.println("Enter the Address Book Name :");
         String addressbookName = sc.next();
         if (addressBookMap.containsKey(addressbookName)) {
-            addressBookMap.get(addressbookName).chooseoptionforcontact();
+            addressBookMap.get(addressbookName).choose_Option_For_Contact();
         } else {
             System.out.println("Entered Address Book Name is Not Present ");
         }
@@ -138,9 +165,9 @@ public class AddressBook {
     public static void deleteAddressBook() {
         displayAddressBooks();
         System.out.println("Enter the Address Book Name :");
-        String addressBookName = sc.next();
-        if (addressBookMap.containsKey(addressBookName)) {
-            addressBookMap.remove(addressBookName);
+        String addressbookName = sc.next();
+        if (addressBookMap.containsKey(addressbookName)) {
+            addressBookMap.remove(addressbookName);
             System.out.println("Address Book is Deleted");
         } else {
             System.out.println("Entered Address Book Name is Not Present");
@@ -151,6 +178,7 @@ public class AddressBook {
     public static void addContacts() {
 
         Contacts contacts = new Contacts();
+        //    Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter the Contact details");
 
@@ -253,7 +281,7 @@ public class AddressBook {
     }
 
 
-    public static void chooseoptionforcontact() {
+    public static void choose_Option_For_Contact() {
         int choice;
         do {
             Scanner scan = new Scanner(System.in);
@@ -278,5 +306,4 @@ public class AddressBook {
             }
         } while (choice != 5);
     }
-
 }
