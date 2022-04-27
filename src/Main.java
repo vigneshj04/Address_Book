@@ -1,6 +1,22 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
+    static HashMap<String, AddressBook> addressBookMap = new HashMap<>();
+
+    public static void addNewAddressBook() {
+         Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter the Address Book Name :");
+        String addressBookName = sc.next();
+        if (addressBookMap.containsKey(addressBookName)) {
+            System.out.println("Entered AddressBook is Already Available");
+        } else {
+            AddressBook addressBook = new AddressBook();
+            addressBookMap.put(addressBookName, addressBook);
+        }
+    }
+
 
     public static void main(String[] args) {
 
