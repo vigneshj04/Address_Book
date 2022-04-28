@@ -26,12 +26,12 @@ public class AddressBook {
 
     public static void addNewAddressBook() {
         System.out.println("Enter the Address Book Name :");
-        String addressBookName = sc.next();
-        if (addressBookMap.containsKey(addressBookName)) {
+        String addressbookName = sc.next();
+        if (addressBookMap.containsKey(addressbookName)) {
             System.out.println("Entered AddressBook is Already Available");
         } else {
             AddressBook addressBook = new AddressBook();
-            addressBookMap.put(addressBookName, addressBook);
+            addressBookMap.put(addressbookName, addressBook);
         }
 
     }
@@ -171,9 +171,9 @@ public class AddressBook {
     public static void editAddressBook() {
         displayAddressBooks();
         System.out.println("Enter the Address Book Name :");
-        String addressbookName = sc.next();
-        if (addressBookMap.containsKey(addressbookName)) {
-            addressBookMap.get(addressbookName).chooseoptionforcontact();
+        String addressBookName = sc.next();
+        if (addressBookMap.containsKey(addressBookName)) {
+            addressBookMap.get(addressBookName).chooseoptionforcontact();
         } else {
             System.out.println("Entered Address Book Name is Not Present ");
         }
@@ -183,9 +183,9 @@ public class AddressBook {
     public static void deleteAddressBook() {
         displayAddressBooks();
         System.out.println("Enter the Address Book Name :");
-        String addressbookName = sc.next();
-        if (addressBookMap.containsKey(addressbookName)) {
-            addressBookMap.remove(addressbookName);
+        String addressBookName = sc.next();
+        if (addressBookMap.containsKey(addressBookName)) {
+            addressBookMap.remove(addressBookName);
             System.out.println("Address Book is Deleted");
         } else {
             System.out.println("Entered Address Book Name is Not Present");
@@ -196,7 +196,6 @@ public class AddressBook {
     public static void addContacts() {
 
         Contacts contacts = new Contacts();
-        //    Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter the Contact details");
 
@@ -231,8 +230,6 @@ public class AddressBook {
             System.out.println("Contact already exists");
     }
 
-
-    //Method to Show the Contact Details
     public static void showContacts() {
         for (Contacts contacts : list) {
             System.out.println("Contact Details -");
